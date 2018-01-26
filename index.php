@@ -12,22 +12,30 @@ if(isset($_GET['login']) && $_GET['login'] == 0) {
 ?>
 
     <h1>Bem Vindo a Loja</h1>
-    <h2>Login</h2>
-    <form action="login.php" method="post">
-        <table class="table"> 
-        <tr>
-            <td>Email</td>
-            <td><input class="form-control" type="text" name="email"></td>
-        </tr>
-        <tr>
-            <td>Senha</td>
-            <td><input class="form-control" type="password" name="senha"></td>
-        </tr>
-        <tr>
-            <td><button class="btn btn-primary">Login</button></td>
-        </tr>
-        
-        </table>
-    </form> 
+    <?php
+        if(isset($_COOKIE['usuario_logado'])) {
+            echo "<p class='text-success'>Voce esta logado como {$_COOKIE['usuario_logado']}</p>";
+        } else {
+            echo "
+            <h2>Login</h2>
+            <form action='login.php' method='post'>
+                <table class='table'> 
+                <tr>
+                    <td>Email</td>
+                    <td><input class='form-control' type='text' name='email'></td>
+                </tr>
+                <tr>
+                    <td>Senha</td>
+                    <td><input class='form-control' type='password' name='senha'></td>
+                </tr>
+                <tr>
+                    <td><button class='btn btn-primary'>Login</button></td>
+                </tr>
+                
+                </table>
+            </form> ";
+        } 
+    ?>
+    
  
 <?php include("rodape.php") ?>
